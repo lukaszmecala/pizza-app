@@ -3,12 +3,16 @@ import Button from '../../ui/Button'
 import CartItem from './CartItem'
 import EmptyCart from './EmptyCart'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart, getCart } from './cartSlice'
+import { clearCart, getCart, getEditMode, getSelectedId } from './cartSlice'
 import { getUserName } from '../user/userSlice'
+import IngredientsEdit from './IngredientsEdit'
 
 function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector(getCart)
+
+    const edit = useSelector(getEditMode)
+    const selectedId = useSelector(getSelectedId)
 
     const userName = useSelector(getUserName)
     if (!cart.length) return <EmptyCart />
@@ -25,6 +29,19 @@ function Cart() {
                     <CartItem item={item} key={item.pizzaId} />
                 ))}
             </ul>
+
+            {edit && (
+                <div>
+                    {cart
+                        .filter((el) => el.pizzaId === selectedId)
+                        .map((item) => (
+                            <IngredientsEdit
+                                key={item.pizzaId}
+                                pizzaId={item.pizzaId}
+                            />
+                        ))}
+                </div>
+            )}
             <div className="mt-6 space-x-2">
                 <Button to="/order/new" type="primary">
                     Order pizzas

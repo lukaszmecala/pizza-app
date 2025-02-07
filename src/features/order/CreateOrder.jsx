@@ -55,7 +55,6 @@ function CreateOrder() {
 
     const errorsData = useActionData()
 
-    console.log(errorsData)
     const dispatch = useDispatch()
     const [withPriority, setWithPriority] = useState(false)
     const cart = useSelector(getCart)
@@ -64,7 +63,7 @@ function CreateOrder() {
         totalCartPrice + (withPriority ? totalCartPrice * 0.2 : 0)
 
     if (!cart.length) return <EmptyCart />
-
+    console.log(cart)
     return (
         <div className="px-4 py-6">
             <h2 className="mb-8 text-xl font-semibold">
@@ -185,7 +184,7 @@ export async function action({ request }) {
         cart: JSON.parse(data.cart),
         priority: data.priority === 'true',
     }
-
+    console.log(data)
     const errors = {}
     if (!isValidPhone(order.phone)) {
         errors.phone = 'Please enter a valid phone number'
