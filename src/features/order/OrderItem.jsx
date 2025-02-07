@@ -1,7 +1,7 @@
 import { formatCurrency } from '../../utils/helpers'
 
 function OrderItem({ item, isLoadingIngredients, ingredients }) {
-    const { quantity, name, totalPrice } = item
+    const { quantity, name, addIngredients, totalPrice } = item
     return (
         <li className="py-3">
             <div className="flex items-center justify-between gap-2 text-sm">
@@ -14,7 +14,7 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
             <p className="text-sm capitalize italic text-stone-500">
                 {isLoadingIngredients
                     ? 'Loading....'
-                    : `${ingredients.join(', ')} `}
+                    : `${ingredients.join(', ')} ${addIngredients.join(', ')} `}
             </p>
         </li>
     )

@@ -154,6 +154,13 @@ function CreateOrder() {
                     />
                     <input
                         type="hidden"
+                        name="otherIngredients"
+                        value={JSON.stringify(
+                            cart.map((item) => item.otherIngredients || [])
+                        )}
+                    />
+                    <input
+                        type="hidden"
                         name="position"
                         value={
                             position.latitude && position.longitude
@@ -179,9 +186,14 @@ export async function action({ request }) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData)
 
+    const cart = JSON.parse(data.cart).map((item, index) => ({
+        ...item,
+        addIngredients: JSON.parse(data.otherIngredients)[index] || [],
+    }))
+
     const order = {
         ...data,
-        cart: JSON.parse(data.cart),
+        cart,
         priority: data.priority === 'true',
     }
     console.log(data)
