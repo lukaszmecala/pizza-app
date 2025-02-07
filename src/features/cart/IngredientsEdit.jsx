@@ -11,6 +11,8 @@ function IngredientsEdit({ pizzaId }) {
         if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu')
     }, [fetcher])
 
+    console.log(fetcher.data)
+
     const allIngridients = fetcher?.data?.map((el) => el.ingredients)?.flat()
 
     const ingredients = useSelector(getIngredients(pizzaId))

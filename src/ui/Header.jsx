@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import SearchOrder from '../features/order/SearchOrder'
 import UserName from '../features/user/UserName'
+import Button from './Button'
 
 function Header() {
     return (
@@ -9,6 +10,9 @@ function Header() {
                 Fast Pizza React Co.
             </Link>
             <SearchOrder />
+            <Button type="favourite" to="/favourites">
+                Favourites
+            </Button>
             <UserName />
         </header>
     )
