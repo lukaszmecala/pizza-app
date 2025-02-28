@@ -3,7 +3,7 @@ import Button from '../../ui/Button'
 import { formatCurrency } from '../../utils/helpers'
 import { addItem, getCurrenttQuantityById } from '../cart/cartSlice'
 import DeleteItem from '../cart/DeleteItem'
-import UpdateItemQuantity from '../cart/updateItemQuantity'
+import UpdateItemQuantity from '../cart/UpdateItemQuantity'
 import { addFavourite, removeFavourite } from '../favourites/favouritesSlice'
 
 function MenuItem({ pizza }) {
